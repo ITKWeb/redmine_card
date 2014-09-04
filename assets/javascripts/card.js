@@ -160,68 +160,34 @@
 		var ticketCard=ticketCardModele.clone().removeClass('ticket-modele').addClass('project'+issue.project.id).show();
 
 		jQuery('.id',ticketCard).html(issue.id).attr('href',relativeUrl+'/issues/'+issue.id);
-		jQuery('.project',ticketCard).html(issue.project.name).attr('href',relativeUrl+'/projects/'+issue.project.name+'/issues');
+		//jQuery('.project',ticketCard).html(issue.project.name).attr('href',relativeUrl+'/projects/'+issue.project.name+'/issues');
+		jQuery('.parent',ticketCard).html(issue.parent).attr('href',relativeUrl+'/issues/'+issue.parent.id);
 		jQuery('.subject',ticketCard).html(issue.subject);
-		jQuery('.status',ticketCard).html(issue.status.name);
-		jQuery('.author',ticketCard).html(issue.author.name);
-		if(issue.category){
-			jQuery('.category',ticketCard).html(issue.category.name);
+
+		if(issue.story_points){
+			jQuery('.estimation',ticketCard).html(issue.story_points);
 		}else{
-			jQuery('.category',ticketCard).closest('.line').hide();
-		}
-		
-		jQuery('.createdOn',ticketCard).html(dateFormat(new Date(issue.created_on),"yyyy-mm-dd"));
-		
-		if(issue.due_date){
-			jQuery('.commitedDate',ticketCard).html(dateFormat(new Date(issue.due_date),"yyyy-mm-dd"));
-		}else{
-			jQuery('.commitedDate',ticketCard).html();
-		}
-		
-		if(issue.estimated_hours){
-			jQuery('.estimatedHour',ticketCard).html(issue.estimated_hours);
-		}else{
-			jQuery('.estimatedHour',ticketCard).html();
+			jQuery('.estimation',ticketCard).html();
 		}
 
-		if (issue.spent_hours) {
-			jQuery('.spendTime',ticketCard).html(issue.spent_hours);
-		} else {
-			jQuery('.spendTime',ticketCard).html();
-		}
-		
-		if(showLinkedTicket && issue.relations && issue.relations.length>0){
-			console.log(JSON.stringify(issue.relations));
-			var x_issues=new Array();
-			for (var i=0;i<issue.relations.length;i++){
-			  var il=issue.relations[i];
-			  if(issue.id==il.issue_id) { x_issues[i]= il.issue_to_id; }
-			  else { x_issues[i]= il.issue_id; }
-			}
-			var text= JSON.stringify(x_issues);
-			jQuery('.linked span',ticketCard).html(text);
-			jQuery('.linked',ticketCard).show();
-		} else {
-			jQuery('.linked',ticketCard).hide();
-		}
 		jQuery('.line.custom-field').hide();
 		if(issue.custom_fields){
 			for (var i=0;i<issue.custom_fields.length;i++){
-				if(issue.custom_fields[i].id==12){
-					//Nom du demandeur
-					if(issue.custom_fields[i].value=="Moi"){
-						jQuery('.demandeur span',ticketCard).html(issue.author.name);
-					}else{
-						jQuery('.demandeur span',ticketCard).html(issue.custom_fields[i].value);
-					}
-					jQuery('.demandeur').show();
+				if(issue.custom_fields[i].name== "Type d'anomalie"){
+						jQuery('.anomalie span',ticketCard).html(issue.custom_fields[i].value);
+					jQuery('.anomalie').show();
 				}
-				if(issue.custom_fields[i].id==13){
-					//Date souhaité
+				if(issue.custom_fields[i].name=="Conditions de d\u00e9part"){
 					if(issue.custom_fields[i].value){
-						jQuery('.requestedDate span',ticketCard).html(dateFormat(new Date(issue.custom_fields[i].value),"yyyy-mm-dd"));
+						jQuery('.start span',ticketCard).html(issue.custom_fields[i].value));
 					}
-					jQuery('.requestedDate').show();
+					jQuery('.start').show();
+				}
+				if(issue.custom_fields[i].name=="Conditions d'acceptation"){
+					if(issue.custom_fields[i].value){
+						jQuery('.finish span',ticketCard).html(issue.custom_fields[i].value));
+					}
+					jQuery('.finish').show();
 				}
 			}
 		}
