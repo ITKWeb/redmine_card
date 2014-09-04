@@ -51,7 +51,6 @@
 
 .ticket  .line{
 	display:block;
-	font-weight:bold;
 	margin-top:5px;
 }
 
@@ -59,15 +58,20 @@
 	font-weight:normal;
 }
 
-.ticket  .author{
+.ticket  .block{
+	display:block;
+
+	margin:5px;
 }
 
-.ticket  .category{
+.ticket  .block span{
+	display:block;
+	border: solid 1px black;
+	width: 100%;
+	margin:5px;
 }
 
-.ticket  .createdOn{
-	
-}
+
 
 
 #cbp_images_form{ /* Hide Plugin Clipboard image paste*/

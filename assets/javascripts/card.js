@@ -161,7 +161,11 @@
 
 		jQuery('.id',ticketCard).html(issue.id).attr('href',relativeUrl+'/issues/'+issue.id);
 		//jQuery('.project',ticketCard).html(issue.project.name).attr('href',relativeUrl+'/projects/'+issue.project.name+'/issues');
-		jQuery('.parent',ticketCard).html(issue.parent).attr('href',relativeUrl+'/issues/'+issue.parent.id);
+		if (issue.parent) {
+			jQuery('.parent',ticketCard).html(issue.parent).attr('href',relativeUrl+'/issues/'+issue.parent.id);
+		} else {
+			jQuery('.parent').hide();
+		}
 		jQuery('.subject',ticketCard).html(issue.subject);
 
 		if(issue.story_points){
@@ -178,16 +182,16 @@
 					jQuery('.anomalie').show();
 				}
 				if(issue.custom_fields[i].name=="Conditions de d\u00e9part"){
+					jQuery('.start').show();
 					if(issue.custom_fields[i].value){
 						jQuery('.start span',ticketCard).html(issue.custom_fields[i].value);
 					}
-					jQuery('.start').show();
 				}
 				if(issue.custom_fields[i].name=="Conditions d'acceptation"){
+					jQuery('.finish').show();
 					if(issue.custom_fields[i].value){
 						jQuery('.finish span',ticketCard).html(issue.custom_fields[i].value);
 					}
-					jQuery('.finish').show();
 				}
 			}
 		}
