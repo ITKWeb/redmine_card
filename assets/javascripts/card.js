@@ -179,13 +179,13 @@
 				}
 				if(issue.custom_fields[i].name=="Conditions de d\u00e9part"){
 					if(issue.custom_fields[i].value){
-						jQuery('.start span',ticketCard).html(issue.custom_fields[i].value));
+						jQuery('.start span',ticketCard).html(issue.custom_fields[i].value);
 					}
 					jQuery('.start').show();
 				}
 				if(issue.custom_fields[i].name=="Conditions d'acceptation"){
 					if(issue.custom_fields[i].value){
-						jQuery('.finish span',ticketCard).html(issue.custom_fields[i].value));
+						jQuery('.finish span',ticketCard).html(issue.custom_fields[i].value);
 					}
 					jQuery('.finish').show();
 				}
