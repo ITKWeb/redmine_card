@@ -157,12 +157,7 @@
 	function getDivPostIssue(issue){
 
 		// CHOICE OF THE TEMPLATE
-		var ticketCardModele;
-		if (issue.project.id === 1) {
-		} else {
-			jQuery('.ticket-modele').load("/my_card/default_model.html");
-		}
-		ticketCardModele=jQuery('.ticket-modele');
+		var ticketCardModele=jQuery('.ticket-modele');
 
 		console.log("getDivPostIssue(issue="+JSON.stringify(issue)+")");
 		var ticketCard=ticketCardModele.clone().removeClass('ticket-modele').addClass('project'+issue.project.id).show();
