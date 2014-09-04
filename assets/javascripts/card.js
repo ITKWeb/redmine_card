@@ -129,7 +129,6 @@
 		
 	
 		getJson(url,function(data){
-			var ticketCardModele=jQuery('.ticket-modele');
 			var tickets=jQuery('#tickets');
 			if(clearBefore){
 				tickets.empty();
@@ -137,13 +136,13 @@
 			if(data.issues){
 				for(i=0;i<data.issues.length;i++){
 					var issue=data.issues[i];					
-					tickets.append(getDivPostIssue(ticketCardModele,issue));
+					tickets.append(getDivPostIssue(issue));
 				}
 				if(data.total_count>data.limit){
 					alert(data.limit+"/"+data.total_count);
 				}
 			}else{
-				tickets.append(getDivPostIssue(ticketCardModele,data.issue));
+				tickets.append(getDivPostIssue(data.issue));
 			}
 		})
 		
@@ -155,7 +154,16 @@
 	 * 
 	 * Fonction qui 
 	 */
-	function getDivPostIssue(ticketCardModele,issue){
+	function getDivPostIssue(issue){
+
+		// CHOICE OF THE TEMPLATE
+		var ticketCardModele;
+		if (issue.project.id === 1) {
+		} else {
+			jQuery('.ticket-modele').load("/my_card/default_model.html");
+		}
+		ticketCardModele=jQuery('.ticket-modele');
+
 		console.log("getDivPostIssue(issue="+JSON.stringify(issue)+")");
 		var ticketCard=ticketCardModele.clone().removeClass('ticket-modele').addClass('project'+issue.project.id).show();
 
