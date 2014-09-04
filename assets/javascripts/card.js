@@ -167,9 +167,9 @@
 		if (issue.parent != undefined) {
 			console.log ("found parent:" + issue.parent);
 			jQuery('.parent',ticketCard).html(issue.parent.id).attr('href',relativeUrl+'/issues/'+issue.parent.id);
+			jQuery('.histoire').show();
 		} else {
 			console.log ("not found parent:" + issue.parent);
-			jQuery('.histoire').hide();
 		}
 		jQuery('.subject',ticketCard).html(issue.subject);
 
