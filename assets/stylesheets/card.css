@@ -43,10 +43,10 @@
 
 .ticket  .subject{
 	display:block;
-	margin-top:25px;
 	font-size:18px;
 	line-height:20px;
 	font-weight:bold;
+	width: 80%;
 }
 
 .ticket .histoire {
@@ -54,7 +54,7 @@
 }
 
 .ticket .estimation {
-	float: right;
+	text-align: center;
 }
 
 .ticket  .line{

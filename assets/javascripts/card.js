@@ -164,11 +164,11 @@
 		if (issue.parent) {
 			jQuery('.parent',ticketCard).html(issue.parent.id).attr('href',relativeUrl+'/issues/'+issue.parent.id);
 		} else {
-			jQuery('.parent').hide();
+			jQuery('.histoire').hide();
 		}
 		jQuery('.subject',ticketCard).html(issue.subject);
 
-		if(issue.story_points){
+		if(issue.story_points != null){
 			jQuery('.estimation',ticketCard).html(issue.story_points);
 		}else{
 			jQuery('.estimation',ticketCard).html();
@@ -177,9 +177,10 @@
 		jQuery('.line.custom-field').hide();
 		if(issue.custom_fields){
 			for (var i=0;i<issue.custom_fields.length;i++){
-				if(issue.custom_fields[i].name== "Type d'anomalie"){
-						jQuery('.anomalie span',ticketCard).html(issue.custom_fields[i].value[0]);
-					jQuery('.anomalie').show();
+				jQuery('.line.custom-field.anomalie').hide();
+				if(issue.custom_fields[i].name == "Type d'anomalie"){
+					jQuery('.anomalie span',ticketCard).html(issue.custom_fields[i].value[0]);
+					jQuery('.line.custom-field.anomalie').show();
 				}
 				if(issue.custom_fields[i].name=="Conditions de d\u00e9part"){
 					jQuery('.start').show();
