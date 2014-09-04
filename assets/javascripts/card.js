@@ -162,7 +162,7 @@
 		jQuery('.id',ticketCard).html(issue.id).attr('href',relativeUrl+'/issues/'+issue.id);
 		//jQuery('.project',ticketCard).html(issue.project.name).attr('href',relativeUrl+'/projects/'+issue.project.name+'/issues');
 		if (issue.parent) {
-			jQuery('.parent',ticketCard).html(issue.parent).attr('href',relativeUrl+'/issues/'+issue.parent.id);
+			jQuery('.parent',ticketCard).html(issue.parent.id).attr('href',relativeUrl+'/issues/'+issue.parent.id);
 		} else {
 			jQuery('.parent').hide();
 		}
@@ -178,7 +178,7 @@
 		if(issue.custom_fields){
 			for (var i=0;i<issue.custom_fields.length;i++){
 				if(issue.custom_fields[i].name== "Type d'anomalie"){
-						jQuery('.anomalie span',ticketCard).html(issue.custom_fields[i].value);
+						jQuery('.anomalie span',ticketCard).html(issue.custom_fields[i].value[0]);
 					jQuery('.anomalie').show();
 				}
 				if(issue.custom_fields[i].name=="Conditions de d\u00e9part"){
