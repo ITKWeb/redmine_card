@@ -20,5 +20,5 @@ Personnalisation
 ==================
 Pour faire des cartes personnalisées pour un projet:
 créer un template dans app/views/my_card/index.html.erb
-faire le controleur js associés dans assets/javascripts/card.js
-rajouter la condition d'execution du nouveau template dans card.js
+le lister dans la variable templates assets/javascripts/card.js
+si besoin, rajouter l'affectation des champs aux valeurs card.js->getDivPostIssue 
