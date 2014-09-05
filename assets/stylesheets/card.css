@@ -134,7 +134,9 @@
 		color:inherit !important;
 	}
 	
-	
+	.ticket .ticket-modele{
+		display: none;
+	}
 
 }
 
