@@ -96,6 +96,51 @@
 	</div>
 </div>
 
+    <script id="ticket-modele" type="text/x-jQuery-tmpl">
+ 	{{if parent}}
+		<div class="line histoire">
+			Histoire : <a href=${parenthref} class="parent">${parent.id}</a>
+		</div>
+	{{/if}}
+	<a href=${idhref} class="id">${id}</a>
+
+	{{if story_points}}
+		<div class="line estimation">
+			Estimation: ${story_points}
+		</div>
+	{{/if}}
+
+	<span class="subject">${subject}</span>
+
+	<div class="block custom-field start">
+		Condition de départ: <span>{{if start}}${start}{{/if}}</span>
+	</div>
+	<div class="block custom-field finish">
+		Condition d'acceptation: <span>{{if finish}}${finish}{{/if}}</span>
+	</div>
+    </script>
+
+    <script id="ticket-default" type="text/x-jQuery-tmpl">
+ 	{{if parent}}
+		<div class="line histoire">
+			Histoire : <a href=${parenthref} class="parent">${parent.id}</a>
+		</div>
+	{{/if}}
+	<a href=${idhref} class="id">${id}</a>
+
+	{{if story_points}}
+		<div class="line estimation">
+			Estimation: ${story_points}
+		</div>
+	{{/if}}
+
+	<span class="subject">${subject}</span>
+
+	<div class="line description">
+		Description: <span>${description}</span>
+	</div>
+    </script>
+
 <div id="tickets">
 
 
