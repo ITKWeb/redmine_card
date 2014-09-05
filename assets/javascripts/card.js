@@ -1,5 +1,10 @@
 (function () {
 	
+	var templates = [
+		{id: "ticket-default", name:"Ticket par default"},
+		{id: "ticket-preco", name:"Ticket avec conditions"},
+	];
+
 	var showLinkedTicket=true;
 
 	var opt={
@@ -43,6 +48,14 @@
 				}
 				
 			});
+
+			// templates
+			jQuery('#template').append(jQuery('<option>').html('----------').attr('value',''));
+			for(i=0;i<templates.length;i++){
+				jQuery('#template').append(jQuery('<option>').html(templates[i].name).attr('value',templates[i].id));
+				jQuery('#'+templates[i].id+'.subject').html(templates[i].name); // add the name as title of the template
+			}
+
 
 			getJson('/groups.json',function(data){
 				jQuery('#search-group').append(jQuery('<option>').html('----------').attr('value',0));
@@ -158,10 +171,15 @@
 
 		// CHOICE OF THE TEMPLATE
 		var ticketCardModele;
-		if (issue.project.name === "Precovision-interne") {
-			ticketCardModele = jQuery("#ticket-preco");
+		if(jQuery('#template').val()!=''){
+			console.log("template selected: "+ jQuery('#template').val());
+			ticketCardModele = jQuery("#"+jQuery('#template').val());
 		} else {
-			ticketCardModele = jQuery("#ticket-default");
+			if (issue.project.name === "Precovision-interne") {
+				ticketCardModele = jQuery("#ticket-preco");
+			} else {
+				ticketCardModele = jQuery("#ticket-default");
+			}
 		}
 
 		console.log("getDivPostIssue(issue="+JSON.stringify(issue)+")");

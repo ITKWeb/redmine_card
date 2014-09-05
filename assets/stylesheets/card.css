@@ -15,9 +15,9 @@
 }
 
 .choice {
-	float:none;
+	width: 100%;
+	display: inline-block;
 }
-
 
 .ticket{
 	display:block;
