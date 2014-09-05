@@ -179,9 +179,8 @@
 			jQuery('.estimation',ticketCard).hide();
 		}
 
-		jQuery('.line.custom-field', ticketCard).hide();
+		var displayDescription = true;
 		if(issue.custom_fields){
-			jQuery('.description',ticketCard).hide();
 			for (var i=0;i<issue.custom_fields.length;i++){
 				if(issue.custom_fields[i].name === "Type d'anomalie"){
 					jQuery('.anomalie span',ticketCard).html(issue.custom_fields[i].value[0]);
@@ -189,19 +188,24 @@
 				}
 				if(issue.custom_fields[i].name==="Conditions de d\u00e9part"){
 					jQuery('.start',ticketCard).show();
+					displayDescription=false;
 					if(issue.custom_fields[i].value){
 						jQuery('.start span',ticketCard).html(issue.custom_fields[i].value);
 					}
 				}
 				if(issue.custom_fields[i].name==="Conditions d'acceptation"){
 					jQuery('.finish',ticketCard).show();
+					displayDescription=false;
 					if(issue.custom_fields[i].value){
 						jQuery('.finish span',ticketCard).html(issue.custom_fields[i].value);
 					}
 				}
 			}
-		} else {
+		}
+		if (displayDescription) {
 			jQuery('.description span',ticketCard).html(issue.description);
+		} else {
+			jQuery('.description',ticketCard).hide();
 		}
 
 		ticketCard.addClass("priority"+issue.priority.id);

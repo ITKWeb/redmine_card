@@ -47,6 +47,7 @@
 	line-height:20px;
 	font-weight:bold;
 	width: 80%;
+	margin-top:20px;
 }
 
 .ticket .histoire {
@@ -81,7 +82,9 @@
 }
 
 
-
+.ticket .custom-field {
+	display: none;
+}
 
 #cbp_images_form{ /* Hide Plugin Clipboard image paste*/
 	display:none;
