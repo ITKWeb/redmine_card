@@ -167,39 +167,41 @@
 		if (issue.parent != undefined) {
 			console.log ("found parent:" + issue.parent);
 			jQuery('.parent',ticketCard).html(issue.parent.id).attr('href',relativeUrl+'/issues/'+issue.parent.id);
-			jQuery('.histoire').show();
 		} else {
 			console.log ("not found parent:" + issue.parent);
+			jQuery('.histoire',ticketCard).hide();
 		}
 		jQuery('.subject',ticketCard).html(issue.subject);
 
 		if(issue.story_points != null){
 			jQuery('.estimation',ticketCard).html(issue.story_points);
 		}else{
-			jQuery('.estimation',ticketCard).html();
+			jQuery('.estimation',ticketCard).hide();
 		}
 
-		jQuery('.line.custom-field').hide();
+		jQuery('.line.custom-field', ticketCard).hide();
 		if(issue.custom_fields){
+			jQuery('.description',ticketCard).hide();
 			for (var i=0;i<issue.custom_fields.length;i++){
-				jQuery('.line.custom-field.anomalie').hide();
 				if(issue.custom_fields[i].name === "Type d'anomalie"){
 					jQuery('.anomalie span',ticketCard).html(issue.custom_fields[i].value[0]);
-					jQuery('.line.custom-field.anomalie').show();
+					jQuery('.line.custom-field.anomalie',ticketCard).show();
 				}
 				if(issue.custom_fields[i].name==="Conditions de d\u00e9part"){
-					jQuery('.start').show();
+					jQuery('.start',ticketCard).show();
 					if(issue.custom_fields[i].value){
 						jQuery('.start span',ticketCard).html(issue.custom_fields[i].value);
 					}
 				}
 				if(issue.custom_fields[i].name==="Conditions d'acceptation"){
-					jQuery('.finish').show();
+					jQuery('.finish',ticketCard).show();
 					if(issue.custom_fields[i].value){
 						jQuery('.finish span',ticketCard).html(issue.custom_fields[i].value);
 					}
 				}
 			}
+		} else {
+			jQuery('.description span',ticketCard).html(issue.description);
 		}
 
 		ticketCard.addClass("priority"+issue.priority.id);
