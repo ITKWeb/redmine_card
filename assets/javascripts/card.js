@@ -53,7 +53,7 @@
 			jQuery('#template').append(jQuery('<option>').html('----------').attr('value',''));
 			for(i=0;i<templates.length;i++){
 				jQuery('#template').append(jQuery('<option>').html(templates[i].name).attr('value',templates[i].id));
-				var cssPath = '#'+templates[i].id+'.subject';
+				var cssPath = '#'+templates[i].id+' .subject';
 				console.log("Searching "+cssPath);
 				jQuery(cssPath).html(templates[i].name); // add the name as title of the template
 			}
