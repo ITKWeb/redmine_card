@@ -72,7 +72,9 @@
 	</div>
 </form>
 
-<div class="ticket ticket-modele">
+<!--default model -->
+
+<div id="ticket-default" class="ticket ticket-modele">
 	<div class="line histoire">
 		Histoire : <a href="#" class="parent"></a>
 	</div>
@@ -81,9 +83,22 @@
 		Estimation: <span class="estimation"></span>
 	</div>
 	<span class="subject"></span>
-	<div class="line custom-field anomalie">
-		Type anomalie: <span></span>
+
+	<div class="line description">
+		Description: <span></span>
 	</div>
+</div>
+
+<!--Preco tickets-->
+<div id="ticket-preco" class="ticket ticket-modele">
+	<div class="line histoire">
+		Histoire : <a href="#" class="parent"></a>
+	</div>
+	<a href="#" class="id"></a>
+	<div class="line estimation">
+		Estimation: <span class="estimation"></span>
+	</div>
+	<span class="subject"></span>
 	<div class="block custom-field start">
 		Condition de départ: <span></span>
 	</div>
@@ -91,55 +106,9 @@
 		Condition d'acceptation: <span></span>
 	</div>
 
-	<div class="line description">
-		Description: <span></span>
-	</div>
 </div>
 
-    <script id="ticket-modele" type="text/x-jQuery-tmpl">
- 	{{if parent}}
-		<div class="line histoire">
-			Histoire : <a href=${parenthref} class="parent">${parent.id}</a>
-		</div>
-	{{/if}}
-	<a href=${idhref} class="id">${id}</a>
 
-	{{if story_points}}
-		<div class="line estimation">
-			Estimation: ${story_points}
-		</div>
-	{{/if}}
-
-	<span class="subject">${subject}</span>
-
-	<div class="block custom-field start">
-		Condition de départ: <span>{{if start}}${start}{{/if}}</span>
-	</div>
-	<div class="block custom-field finish">
-		Condition d'acceptation: <span>{{if finish}}${finish}{{/if}}</span>
-	</div>
-    </script>
-
-    <script id="ticket-default" type="text/x-jQuery-tmpl">
- 	{{if parent}}
-		<div class="line histoire">
-			Histoire : <a href=${parenthref} class="parent">${parent.id}</a>
-		</div>
-	{{/if}}
-	<a href=${idhref} class="id">${id}</a>
-
-	{{if story_points}}
-		<div class="line estimation">
-			Estimation: ${story_points}
-		</div>
-	{{/if}}
-
-	<span class="subject">${subject}</span>
-
-	<div class="line description">
-		Description: <span>${description}</span>
-	</div>
-    </script>
 
 <div id="tickets">
 

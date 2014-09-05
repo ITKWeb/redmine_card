@@ -157,73 +157,60 @@
 	function getDivPostIssue(issue){
 
 		// CHOICE OF THE TEMPLATE
-		//var ticketCardModele=jQuery('.ticket-modele');
+		var ticketCardModele;
+		if (issue.project.name === "Precovision-interne") {
+			ticketCardModele = jQuery("#ticket-preco");
+		} else {
+			ticketCardModele = jQuery("#ticket-default");
+		}
 
 		console.log("getDivPostIssue(issue="+JSON.stringify(issue)+")");
-		//var ticketCard=ticketCardModele.clone().removeClass('ticket-modele').addClass('project'+issue.project.id).show();
+		var ticketCard=ticketCardModele.clone().removeClass('ticket-modele').addClass('project'+issue.project.id).show();
 
-		//jQuery('.id',ticketCard).html(issue.id).attr('href',relativeUrl+'/issues/'+issue.id);
-		issue.idhref = relativeUrl+'/issues/'+issue.id;
+		// ID
+		jQuery('.id',ticketCard).html(issue.id).attr('href',relativeUrl+'/issues/'+issue.id);
 
-		//if (issue.parent != undefined) {
-		//	jQuery('.parent',ticketCard).html(issue.parent.id).attr('href',relativeUrl+'/issues/'+issue.parent.id);
-		//} else {
-		//	jQuery('.histoire',ticketCard).hide();
-		//}
-		issue.parenthref = relativeUrl+'/issues/'+issue.parent.id;
+		// parent
+		if (issue.parent != undefined) {
+			jQuery('.parent',ticketCard).html(issue.parent.id).attr('href',relativeUrl+'/issues/'+issue.parent.id);
+		} else {
+			jQuery('.histoire',ticketCard).hide();
+		}
 
-		//jQuery('.subject',ticketCard).html(issue.subject);
+		// title
+		jQuery('.subject',ticketCard).html(issue.subject);
 
-		/*if(issue.story_points != null){
+		// estimation
+		if(issue.story_points != null){
 			jQuery('.estimation',ticketCard).html(issue.story_points);
 		}else{
 			jQuery('.estimation',ticketCard).hide();
-		}*/
+		}
 
-//		jQuery('.line.custom-field.anomalie',ticketCard).hide();
-//		var displayDescription = true;
 		if(issue.custom_fields){
 			for (var i=0;i<issue.custom_fields.length;i++){
-				if(issue.custom_fields[i].name === "Type d'anomalie"){
-					//jQuery('.anomalie span',ticketCard).html(issue.custom_fields[i].value[0]);
-					//jQuery('.line.custom-field.anomalie',ticketCard).show();
-					issue.anomalie = issue.custom_fields[i].value[0];
+				if(issue.custom_fields[i].name === "Type d'anomalie" && jQuery('.anomalie', ticketCard)) {
+					jQuery('.anomalie span',ticketCard).html(issue.custom_fields[i].value[0]);
 				}
-				if(issue.custom_fields[i].name==="Conditions de d\u00e9part"){
-					/*displayDescription=false;
+
+				if(issue.custom_fields[i].name==="Conditions de d\u00e9part" && jQuery('.start', ticketCard)){
 					if(issue.custom_fields[i].value){
 						jQuery('.start span',ticketCard).html(issue.custom_fields[i].value);
-					}*/
-					issue.start = issue.custom_fields[i].value;
+					}
 				}
-				if(issue.custom_fields[i].name==="Conditions d'acceptation"){
-					/*displayDescription=false;
-					if(issue.custom_fields[i].value){
+				if(issue.custom_fields[i].name==="Conditions d'acceptation" && jQuery('.finish', ticketCard)){
+//					if(issue.custom_fields[i].value){
 						jQuery('.finish span',ticketCard).html(issue.custom_fields[i].value);
-					}*/
-					issue.finish = issue.custom_fields[i].value;
+//					}
 				}
 			}
 		}
-		/*if (displayDescription) {
+		if (jQuery('.description',ticketCard)) {
 			jQuery('.description span',ticketCard).html(issue.description);
-			jQuery('.start',ticketCard).hide();
-			jQuery('.finish',ticketCard).hide();
-		} else {
-			jQuery('.description',ticketCard).hide();
-			jQuery('.start',ticketCard).show();
-			jQuery('.finish',ticketCard).show();
-		}*/
+		}
 
 		//ticketCard.addClass("priority"+issue.priority.id);
 
-		// CHOICE OF THE TEMPLATE
-		var ticketCard;
-		if (issue.project.name === "Precovision-interne") {
-			ticketCard = jQuery("#ticket-modele").tmpl(issue);
-		} else {
-			ticketCard = jQuery("#ticket-default").tmpl(issue);
-		}
 		return ticketCard;
 	}
 
