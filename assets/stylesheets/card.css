@@ -9,6 +9,14 @@
 	color:black;
 }
 
+.project-form {
+	float: left;
+	margin-right: 20px;
+}
+
+.choice {
+	width: 100%;
+}
 
 
 .ticket{

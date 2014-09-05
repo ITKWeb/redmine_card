@@ -33,7 +33,7 @@
 		relativeUrl=jQuery('#relativeUrl').val();
 		apiKey=jQuery('#apiKey').val();
 	
-			jQuery('.ticket-modele').hide();
+			//jQuery('.ticket-modele').hide();
 			jQuery('#project').empty();
 			jQuery('#search-assigned').empty();
 			getJson("/projects.json",function(data){
