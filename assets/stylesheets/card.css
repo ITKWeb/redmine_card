@@ -63,7 +63,8 @@
 }
 
 .ticket .estimation {
-	text-align: center;
+	position: absolute;
+	margin-left: 130px;
 }
 
 .ticket  .line{
