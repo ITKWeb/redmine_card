@@ -40,7 +40,7 @@
 	
 			//jQuery('.ticket-modele').hide();
 			jQuery('#project').empty();
-			jQuery('#search-assigned').empty();
+			//jQuery('#search-assigned').empty();
 			getJson("/projects.json",function(data){
 				jQuery('#project').append(jQuery('<option>').html('----------').attr('value',0));
 				for(i=0;i<data.projects.length;i++){
@@ -58,7 +58,7 @@
 				jQuery(cssPath).html(templates[i].name); // add the name as title of the template
 			}
 
-
+/*
 			getJson('/groups.json',function(data){
 				jQuery('#search-group').append(jQuery('<option>').html('----------').attr('value',0));
 				for(i=0;i<data.groups.length;i++){
@@ -70,6 +70,7 @@
 
 			jQuery('#search-group').change(refreshUser);
 			refreshUser();//On load, we show all users
+*/
 
 			setTimeout(function(){
 				//Wait 1 second for ajax request before show form
@@ -127,9 +128,9 @@
 			if(jQuery('#project').val()!='0'){
 				url=url+'&project_id='+jQuery('#project').val();
 			}
-			if(jQuery('#search-assigned').val()!='0'){
+		/*	if(jQuery('#search-assigned').val()!='0'){
 				url=url+'&assigned_to_id='+jQuery('#search-assigned').val();
-			}
+			}*/
 			if(jQuery('#date-since').val()!=''){
 				url=url+'&created_on=%3E%3D'+jQuery('#date-since').val();
 			}
